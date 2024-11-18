@@ -7,19 +7,22 @@
   <link rel="stylesheet" href="game.css">
 </head>
 <body>
-  <div class="info">
-    <div id="startScreen">
-      <h1>Welcome to the AI-Generated Game!</h1>
-      <p>Click or tap on the moving nodes to earn points!</p>
-      <p>Created by: <strong>Jack Thompson</strong> (who didn’t actually make this game, but AI did!)</p>
-      <button id="startButton" onclick="startGame()">Start Game</button>
-    </div>
-    <div id="gameOver">
-      <h1>Game Over!</h1>
-      <p>Your score: <span id="finalScore">0</span></p>
-      <button onclick="resetGame()">Restart</button>
-    </div>
+  <!-- Game Start Screen -->
+  <div id="startScreen">
+    <h1>Welcome to the AI-Generated Game!</h1>
+    <p>Click or tap on the moving nodes to earn points!</p>
+    <p>Created by: <strong>Jack Thompson</strong> (who didn’t actually make this game, but AI did!)</p>
+    <button id="startButton" onclick="startGame()">Start Game</button>
   </div>
+
+  <!-- Game Over Screen -->
+  <div id="gameOver">
+    <h1>Game Over!</h1>
+    <p>Your score: <span id="finalScore">0</span></p>
+    <button onclick="resetGame()">Restart</button>
+  </div>
+
+  <!-- Canvas and Score Display -->
   <canvas id="gameCanvas"></canvas>
   <div>
     <p>Score: <span id="score">0</span></p>

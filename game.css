@@ -29,11 +29,6 @@ button:hover {
   background-color: #00cc99;
 }
 
-.info {
-  display: none;
-  text-align: center;
-}
-
 #startScreen {
   display: flex;
   flex-direction: column;

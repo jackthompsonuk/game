@@ -169,12 +169,15 @@ function animateParticles() {
 
 // Show Game Over Screen
 function showGameOver() {
-  isGameRunning = false;
+  isGameRunning = false;  // Stop the game from running
   clearInterval(gameInterval); // Stop node spawning
+  gameInterval = null;  // Nullify the game interval to stop any other node spawning
+
+  // Prevent any further escape counts or game updates
   const finalScore = document.getElementById('finalScore');
   finalScore.textContent = score;
 
-  gameOverScreen.style.display = 'flex';
+  gameOverScreen.style.display = 'flex';  // Show the game over screen
   document.querySelector('.info').style.display = 'none';
 }
 
