@@ -30,6 +30,9 @@ const particles = [];
 const nodeLifetime = 2000; // milliseconds
 let isGameRunning = false;
 let gameInterval; // For managing the node spawn interval
+let nodeSpawnRate = 1000; // Initial spawn rate (ms)
+let moveNodes = false; // Flag to start moving nodes
+let nodeSpeedIncreaseInterval = 10; // Increase spawn rate every 10 points
 
 // UI Elements
 const scoreDisplay = document.getElementById('score');
@@ -58,7 +61,7 @@ function startGame() {
   canvas.style.display = 'block';
 
   // Start the node spawn interval
-  gameInterval = setInterval(spawnNode, 1000);
+  gameInterval = setInterval(spawnNode, nodeSpawnRate);
   gameLoop();
 }
 
@@ -72,7 +75,16 @@ function spawnNode() {
     size: 20,
     color: '#00ffcc',
     createdAt: Date.now(),
+    speedX: 0,  // Default speed 0 (stationary by default)
+    speedY: 0,
   };
+
+  // If the player has 100 points, make nodes move
+  if (score >= 100) {
+    node.speedX = random(-2, 2);
+    node.speedY = random(-2, 2);
+  }
+
   nodes.push(node);
 
   // Remove the node after its lifetime
@@ -86,6 +98,13 @@ function spawnNode() {
       }
     }
   }, nodeLifetime);
+
+  // Increase spawn rate every 10 points
+  if (score % nodeSpeedIncreaseInterval === 0) {
+    nodeSpawnRate = Math.max(500, nodeSpawnRate - 5); // Increase spawn speed, min 500ms
+    clearInterval(gameInterval);
+    gameInterval = setInterval(spawnNode, nodeSpawnRate);
+  }
 }
 
 // Handle Touch and Click Events
@@ -178,6 +197,8 @@ function gameLoop() {
   nodes.forEach((node) => {
     const glitchX = random(-2, 2);
     const glitchY = random(-2, 2);
+    node.x += node.speedX; // Move the node if it has a speed
+    node.y += node.speedY; // Move the node if it has a speed
     ctx.beginPath();
     ctx.arc(node.x + glitchX, node.y + glitchY, node.size, 0, Math.PI * 2);
     ctx.fillStyle = node.color;
