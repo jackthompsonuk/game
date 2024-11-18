@@ -217,6 +217,3 @@ function gameLoop() {
 
   requestAnimationFrame(gameLoop);
 }
-
-// Start button listener
-document.getElementById('startButton').addEventListener('click', startGame);

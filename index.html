@@ -3,30 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI Target Click Game</title>
+  <title>AI-Generated Game</title>
   <link rel="stylesheet" href="game.css">
 </head>
 <body>
-  <div id="startScreen">
-    <h1>AI Target Click Game</h1>
-    <p>Click or tap the target to score. Be quick!</p>
-    <button id="startButton">Start Game</button>
-    <div class="author">
-      <p>Created by <strong>Jack Thompson</strong> (well... AI generated it, but I take full credit anyway!)</p>
+  <div class="info">
+    <div id="startScreen">
+      <h1>Welcome to the AI-Generated Game!</h1>
+      <p>Click or tap on the moving nodes to earn points!</p>
+      <p>Created by: <strong>Jack Thompson</strong> (who didn’t actually make this game, but AI did!)</p>
+      <button id="startButton" onclick="startGame()">Start Game</button>
+    </div>
+    <div id="gameOver">
+      <h1>Game Over!</h1>
+      <p>Your score: <span id="finalScore">0</span></p>
+      <button onclick="resetGame()">Restart</button>
     </div>
   </div>
-
-  <div class="info">
-    <p>Score: <span id="score">0</span></p>
-    <p>Escaped: <span id="escaped">0</span></p>
-  </div>
-
   <canvas id="gameCanvas"></canvas>
-
-  <div id="gameOver" style="display: none;">
-    <h2>Game Over!</h2>
-    <p>Your final score: <span id="finalScore">0</span></p>
-    <button onclick="resetGame()">Restart Game</button>
+  <div>
+    <p>Score: <span id="score">0</span></p>
+    <p>Nodes Escaped: <span id="escaped">0</span></p>
   </div>
 
   <script src="game.js"></script>

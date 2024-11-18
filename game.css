@@ -1,59 +1,52 @@
 /* game.css */
 body {
-    font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    height: 100vh;
-    margin: 0;
-    background-color: #f1f1f1;
-    text-align: center;
-  }
-  
-  h1 {
-    font-size: 2rem;
-    margin: 20px 0;
-  }
-  
-  #startScreen {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  button {
-    background-color: #00ffcc;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1rem;
-    margin-top: 20px;
-  }
-  
-  button:hover {
-    background-color: #00e6b8;
-  }
-  
-  canvas {
-    border: 2px solid black;
-    display: none;
-    margin-top: 20px;
-  }
-  
-  .info {
-    margin-top: 20px;
-  }
-  
-  #gameOver {
-    text-align: center;
-    display: none;
-  }
-  
-  .author {
-    font-size: 0.9rem;
-    margin-top: 10px;
-  }
-  
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #000; /* Black background */
+  color: #fff; /* White text */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+#gameCanvas {
+  border: 1px solid #00ffcc; /* Border around the game canvas */
+  display: none; /* Initially hide the canvas */
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #00ffcc;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #00cc99;
+}
+
+.info {
+  display: none;
+  text-align: center;
+}
+
+#startScreen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#gameOver {
+  display: none;
+  text-align: center;
+  color: #ff0044; /* Red color for Game Over */
+}
+
+#finalScore {
+  font-size: 24px;
+  font-weight: bold;
+}
