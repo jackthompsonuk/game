@@ -1,4 +1,4 @@
-// Game Variables and Elements
+// game.js
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 
@@ -38,7 +38,6 @@ const scoreDisplay = document.getElementById('score');
 const escapedDisplay = document.getElementById('escaped');
 const startScreen = document.getElementById('startScreen');
 const gameOverScreen = document.getElementById('gameOver');
-const canvasContainer = document.getElementById('gameCanvas');
 
 // Utility Function: Random Number
 function random(min, max) {
@@ -56,10 +55,9 @@ function startGame() {
   scoreDisplay.textContent = score;
   escapedDisplay.textContent = escaped;
 
-  // Hide start screen and show the game canvas and score display
   startScreen.style.display = 'none';
-  gameOverScreen.style.display = 'none';  // Hide game over screen if it was showing
-  canvasContainer.style.display = 'block';  // Show the canvas container
+  document.querySelector('.info').style.display = 'block';
+  canvas.style.display = 'block';
 
   // Start the node spawn interval
   gameInterval = setInterval(spawnNode, nodeSpawnRate);
@@ -180,15 +178,15 @@ function showGameOver() {
   finalScore.textContent = score;
 
   gameOverScreen.style.display = 'flex';  // Show the game over screen
-  canvasContainer.style.display = 'none';  // Hide the canvas after game over
+  document.querySelector('.info').style.display = 'none';
 }
 
 // Reset Game
 function resetGame() {
   isGameRunning = false;
   clearInterval(gameInterval); // Stop any leftover intervals
-  gameOverScreen.style.display = 'none';  // Hide game over screen
-  startScreen.style.display = 'flex';  // Show start screen again
+  gameOverScreen.style.display = 'none';
+  startScreen.style.display = 'flex';
 }
 
 // Game Loop
