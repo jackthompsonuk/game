@@ -31,7 +31,6 @@ const nodeLifetime = 2000; // milliseconds
 let isGameRunning = false;
 let gameInterval; // For managing the node spawn interval
 let nodeSpawnRate = 1000; // Initial spawn rate (ms)
-let moveNodes = false; // Flag to start moving nodes
 let nodeSpeedIncreaseInterval = 10; // Increase spawn rate every 10 points
 
 // UI Elements
@@ -81,8 +80,8 @@ function spawnNode() {
 
   // If the player has 100 points, make nodes move
   if (score >= 100) {
-    node.speedX = random(-2, 2);
-    node.speedY = random(-2, 2);
+    node.speedX = random(-2, 2); // Set random horizontal speed
+    node.speedY = random(-2, 2); // Set random vertical speed
   }
 
   nodes.push(node);
@@ -193,21 +192,31 @@ function gameLoop() {
 
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  // Draw Nodes with Glitchy Animation
-  nodes.forEach((node) => {
-    const glitchX = random(-2, 2);
-    const glitchY = random(-2, 2);
-    node.x += node.speedX; // Move the node if it has a speed
-    node.y += node.speedY; // Move the node if it has a speed
+  // Draw Nodes and Move them if they have speed
+  nodes.forEach(node => {
     ctx.beginPath();
-    ctx.arc(node.x + glitchX, node.y + glitchY, node.size, 0, Math.PI * 2);
+    ctx.arc(node.x, node.y, node.size, 0, Math.PI * 2);
     ctx.fillStyle = node.color;
     ctx.fill();
     ctx.closePath();
+
+    // Move the node if it has a speed
+    node.x += node.speedX;
+    node.y += node.speedY;
+
+    // Bounce the node off the walls (optional)
+    if (node.x < 0 || node.x > canvas.width) {
+      node.speedX = -node.speedX; // Reverse horizontal speed when hitting the wall
+    }
+    if (node.y < 0 || node.y > canvas.height) {
+      node.speedY = -node.speedY; // Reverse vertical speed when hitting the wall
+    }
   });
 
-  // Animate Particles
   animateParticles();
 
   requestAnimationFrame(gameLoop);
 }
+
+// Start button listener
+document.getElementById('startButton').addEventListener('click', startGame);

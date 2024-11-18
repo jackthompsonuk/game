@@ -3,97 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Terminate the Rogue AI Nodes</title>
-  <style>
-    body {
-      margin: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      background: #121212;
-      color: white;
-      font-family: Arial, sans-serif;
-      overflow: hidden;
-    }
-    h1 {
-      margin: 0;
-      font-size: 36px;
-      color: #00ffcc;
-      text-align: center;
-    }
-    .author {
-      font-size: 16px;
-      margin: 10px 0 20px;
-      color: #cccccc;
-      text-align: center;
-    }
-    p {
-      margin: 10px 0 20px;
-      font-size: 18px;
-      text-align: center;
-      color: #cccccc;
-    }
-    .info, #gameCanvas, #startScreen, #gameOver {
-      display: none;
-    }
-    canvas {
-      border: 2px solid #00ffcc;
-      background: #1a1a1a;
-    }
-    #startScreen, #gameOver {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.8);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      z-index: 10;
-    }
-    #startScreen button, #gameOver button {
-      background: #00ffcc;
-      border: none;
-      color: #121212;
-      padding: 10px 20px;
-      cursor: pointer;
-      font-size: 18px;
-    }
-    #startScreen button:hover, #gameOver button:hover {
-      background: #00e6b3;
-    }
-    .info {
-      position: absolute;
-      top: 10px;
-      text-align: center;
-    }
-    .info div {
-      margin: 5px;
-    }
-  </style>
+  <title>AI Target Click Game</title>
+  <link rel="stylesheet" href="game.css">
 </head>
 <body>
-  <h1>Terminate the Rogue AI Nodes</h1>
-  <div class="author">Brought to you by Jack Thompson* (and AI). *Jack claims full credit for clicking 'Run'.</div>
-  <p>Click (or tap) on the rogue AI nodes before they escape. Don't let more than 5 escape, or it's game over!</p>
   <div id="startScreen">
-    <p>Welcome to the game! Are you ready to terminate some rogue AI nodes?</p>
-    <button onclick="startGame()">Start Game</button>
+    <h1>AI Target Click Game</h1>
+    <p>Click or tap the target to score. Be quick!</p>
+    <button id="startButton">Start Game</button>
+    <div class="author">
+      <p>Created by <strong>Jack Thompson</strong> (well... AI generated it, but I take full credit anyway!)</p>
+    </div>
   </div>
+
   <div class="info">
-    <div>Score: <span id="score">0</span></div>
-    <div>Escaped: <span id="escaped">0</span></div>
+    <p>Score: <span id="score">0</span></p>
+    <p>Escaped: <span id="escaped">0</span></p>
   </div>
+
   <canvas id="gameCanvas"></canvas>
-  <div id="gameOver">
-    <p>Game Over!</p>
-    <p>Your Score: <span id="finalScore">0</span></p>
-    <button onclick="resetGame()">Restart</button>
+
+  <div id="gameOver" style="display: none;">
+    <h2>Game Over!</h2>
+    <p>Your final score: <span id="finalScore">0</span></p>
+    <button onclick="resetGame()">Restart Game</button>
   </div>
+
   <script src="game.js"></script>
 </body>
 </html>
