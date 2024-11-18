@@ -1,47 +1,114 @@
-/* game.css */
+/* General Body and Canvas Styles */
 body {
+  font-family: 'Arial', sans-serif;
   margin: 0;
   padding: 0;
-  font-family: Arial, sans-serif;
   background-color: #000; /* Black background */
-  color: #fff; /* White text */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  overflow: hidden;
+  color: #fff;
+  text-align: center;
 }
 
-#gameCanvas {
-  border: 1px solid #00ffcc; /* Border around the game canvas */
-  display: none; /* Initially hide the canvas */
+canvas {
+  display: block;
+  margin: 0 auto;
+  background-color: #222;
+  border: 2px solid #fff;
 }
 
-button {
-  padding: 10px 20px;
-  background-color: #00ffcc;
-  border: none;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #00cc99;
-}
-
+/* Start Screen Styles */
 #startScreen {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-}
-
-#gameOver {
-  display: none;
+  height: 100vh;
+  background-color: #333;
+  color: white;
   text-align: center;
-  color: #ff0044; /* Red color for Game Over */
 }
 
-#finalScore {
-  font-size: 24px;
-  font-weight: bold;
+#startScreen h1 {
+  font-size: 2.5rem;
+}
+
+#startScreen p {
+  font-size: 1.2rem;
+  margin: 10px 0;
+}
+
+#startButton {
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  background-color: #00ffcc;
+  border: none;
+  color: black;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+#startButton:hover {
+  background-color: #00cc99;
+}
+
+/* Game Over Screen Styles */
+#gameOver {
+  display: none; /* Hidden initially */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #333;
+  color: white;
+}
+
+#gameOver h1 {
+  font-size: 2.5rem;
+}
+
+#gameOver p {
+  font-size: 1.2rem;
+  margin: 10px 0;
+}
+
+#gameOver button {
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  background-color: #ff0044;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+#gameOver button:hover {
+  background-color: #cc0033;
+}
+
+/* Score Section Styles */
+div {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 10;
+}
+
+p {
+  margin: 5px 0;
+  font-size: 1.2rem;
+}
+
+/* Responsive Layout */
+@media (max-width: 600px) {
+  #startScreen h1 {
+    font-size: 2rem;
+  }
+
+  #startScreen p, #gameOver p {
+    font-size: 1rem;
+  }
+
+  #startButton, #gameOver button {
+    font-size: 1rem;
+    padding: 8px 16px;
+  }
 }
