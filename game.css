@@ -17,11 +17,16 @@ canvas {
 
 /* Start Screen Styles */
 #startScreen {
+  position: fixed;
+  top:0;
+  left:0;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  width: 100vw;
   background-color: #333;
   color: white;
   text-align: center;
@@ -53,10 +58,15 @@ canvas {
 /* Game Over Screen Styles */
 #gameOver {
   display: none; /* Hidden initially */
+  position: fixed;
+  top:0;
+  left:0;
+  z-index: 1;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  width: 100vw;
   background-color: #333;
   color: white;
 }
@@ -82,14 +92,6 @@ canvas {
 
 #gameOver button:hover {
   background-color: #cc0033;
-}
-
-/* Score Section Styles */
-div {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  z-index: 10;
 }
 
 p {

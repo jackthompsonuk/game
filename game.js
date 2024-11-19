@@ -6,16 +6,24 @@ const ctx = canvas.getContext('2d');
 function resizeCanvas() {
   const aspectRatio = 3 / 2; // Maintain a consistent aspect ratio
   const maxWidth = window.innerWidth * 0.9; // Max width: 90% of the screen
-  const maxHeight = window.innerHeight * 0.7; // Max height: 70% of the screen
+  const maxHeight = window.innerHeight * 0.8; // Max height: 80% of the screen for mobile
 
-  if (maxWidth / aspectRatio < maxHeight) {
+  // On mobile, let's allow for a taller canvas
+  if (window.innerWidth <= 600) { // Consider mobile if width <= 600px
     canvas.width = maxWidth;
-    canvas.height = maxWidth / aspectRatio;
+    canvas.height = maxHeight;  // Make the height 80% of the screen height on mobile
   } else {
-    canvas.width = maxHeight * aspectRatio;
-    canvas.height = maxHeight;
+    // On desktop, keep the aspect ratio intact
+    if (maxWidth / aspectRatio < maxHeight) {
+      canvas.width = maxWidth;
+      canvas.height = maxWidth / aspectRatio;
+    } else {
+      canvas.width = maxHeight * aspectRatio;
+      canvas.height = maxHeight;
+    }
   }
 }
+
 
 // Call resizeCanvas on load and resize
 resizeCanvas();
