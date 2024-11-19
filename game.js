@@ -1,4 +1,4 @@
-// game.js
+// Game Variables and Elements
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 
@@ -32,6 +32,7 @@ let isGameRunning = false;
 let gameInterval; // For managing the node spawn interval
 let nodeSpawnRate = 1000; // Initial spawn rate (ms)
 let nodeSpeedIncreaseInterval = 10; // Increase spawn rate every 10 points
+let spawnRateIncrement = 5; // Default increment in spawn speed (ms)
 
 // UI Elements
 const scoreDisplay = document.getElementById('score');
@@ -55,9 +56,10 @@ function startGame() {
   scoreDisplay.textContent = score;
   escapedDisplay.textContent = escaped;
 
+  // Hide start screen and show the game canvas and score display
   startScreen.style.display = 'none';
-  document.querySelector('.info').style.display = 'block';
-  canvas.style.display = 'block';
+  gameOverScreen.style.display = 'none';  // Hide game over screen if it was showing
+  canvas.style.display = 'block';  // Show the canvas container
 
   // Start the node spawn interval
   gameInterval = setInterval(spawnNode, nodeSpawnRate);
@@ -78,10 +80,16 @@ function spawnNode() {
     speedY: 0,
   };
 
-  // If the player has 100 points, make nodes move
-  if (score >= 100) {
+  // If the player has scored 50 points or more, make nodes move
+  if (score >= 50) {
     node.speedX = random(-2, 2); // Set random horizontal speed
     node.speedY = random(-2, 2); // Set random vertical speed
+  }
+
+  // If the score reaches 100, double the movement speed
+  if (score >= 100) {
+    node.speedX *= 2; // Double horizontal speed
+    node.speedY *= 2; // Double vertical speed
   }
 
   nodes.push(node);
@@ -100,7 +108,14 @@ function spawnNode() {
 
   // Increase spawn rate every 10 points
   if (score % nodeSpeedIncreaseInterval === 0) {
-    nodeSpawnRate = Math.max(500, nodeSpawnRate - 5); // Increase spawn speed, min 500ms
+    if (score < 100) {
+      // Increase spawn speed by 5ms for scores less than 100
+      nodeSpawnRate = Math.max(500, nodeSpawnRate - spawnRateIncrement);
+    } else {
+      // After 100 points, increase spawn speed by 10ms
+      nodeSpawnRate = Math.max(500, nodeSpawnRate - 10);
+    }
+
     clearInterval(gameInterval);
     gameInterval = setInterval(spawnNode, nodeSpawnRate);
   }
@@ -178,15 +193,15 @@ function showGameOver() {
   finalScore.textContent = score;
 
   gameOverScreen.style.display = 'flex';  // Show the game over screen
-  document.querySelector('.info').style.display = 'none';
+  canvas.style.display = 'none';  // Hide the canvas after game over
 }
 
 // Reset Game
 function resetGame() {
   isGameRunning = false;
   clearInterval(gameInterval); // Stop any leftover intervals
-  gameOverScreen.style.display = 'none';
-  startScreen.style.display = 'flex';
+  gameOverScreen.style.display = 'none';  // Hide game over screen
+  startScreen.style.display = 'flex';  // Show start screen again
 }
 
 // Game Loop
